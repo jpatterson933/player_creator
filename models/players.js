@@ -12,17 +12,17 @@ Players.init (
             primaryKey: true,
             autoIncrement: true
         },
-        type: {
-            type: Datatypes.STRING,
-            allowNull: false
-        },
         name: {
             type: Datatypes.STRING,
             allowNull: false,
             unique: true,
             min: 1,
             max: 14,
-        }
+        },
+        type: {
+            type: Datatypes.STRING,
+            allowNull: false
+        },
     },
     {
         sequelize,
