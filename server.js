@@ -6,11 +6,12 @@ const exphbs = require('express-handlebars');
 // here we are acquiring our npm package path
 const path = require('path');
 // we will need to bring in our routes
-
+const routes = require('./controllers');
 // aquire sequelize from the config directory
 const sequelize = require('./config/connection');
 
 // need our models
+const models = require('./models');
 
 // acquire our session storage with sequelize
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -32,9 +33,14 @@ const sess = {
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// set up handlbars.js engine with custom helpers
+const hbs = exphbs.create({ });
+
 
 // tell our server what session to use
 app.use(session(sess));
+// tell it what engine to use
+app.engine('handlebars', hbs.engine)
 // tell express.js which template engine to use - in this case we are using handlebars
 app.set('view engine', 'handlebars');
 // json() is a built-in middleare function in Express. This method is used to parse the incoming requests with json payloads and is based upon the bodyparser. This method returns the middleware that only parses JSON and only looks at the request where the content-type header matches the type option
@@ -49,10 +55,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public' )));
 // here we are telling express to use our routes
 // add routes here 
+app.use(routes);
 
 
-// we need to also change the below code to sequilieze sync but first, we must add the routes
-
-app.listen(PORT, function () {
-    console.log('The server is live!')
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log('server now live..'))
 })
+

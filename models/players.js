@@ -1,26 +1,26 @@
-const { Model, Datatypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
 class Players extends Model {}
 
-Players.init (
+Players.init(
     {
         id: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
         name: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
             min: 1,
             max: 14,
         },
         type: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
     },
