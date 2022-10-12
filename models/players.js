@@ -23,7 +23,7 @@ Players.init(
             allowNull: false,
             // CUSTOM VALIDATOR
             validate: {
-                // type must be of a specific character type else it will throw an error
+                // type must be of a specific character type else it will throw an error - ensure no error occur in database
                 isDefinedType(typeOf) {
                     if (typeOf === 'warrior') {
                         return;

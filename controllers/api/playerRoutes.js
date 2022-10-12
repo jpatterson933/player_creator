@@ -11,6 +11,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
+        // would like to figure out a way to store all character names in full upper case mode
+        console.log(req.body.name)
         // this will assign the player data to playerData
         const playerData = await Players.create(req.body);
         // when done correctly, it will post a status of 200 and show us the playerData in json format
