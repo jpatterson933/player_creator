@@ -1,4 +1,8 @@
 {
+  "name": "player_creator",
+  "version": "1.0.0",
+  "description": "A full stack application to create and customize players.",
+  "main": "server.js",
   "dependencies": {
     "connect-session-sequelize": "^7.1.5",
     "dotenv": "^16.0.3",
@@ -9,5 +13,20 @@
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "sequelize": "^6.24.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpatterson933/player_creator.git"
+  },
+  "author": "Jeffery W. Patterson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpatterson933/player_creator/issues"
+  },
+  "homepage": "https://github.com/jpatterson933/player_creator#readme"
 }
