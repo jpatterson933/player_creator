@@ -16,24 +16,16 @@ Players.init(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: { len: [1, 13] }
-        },
-        type: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            // CUSTOM VALIDATOR
+            isAlphanumeric: true,
+            isUppercase: true,
             validate: {
-                // type must be of a specific character type else it will throw an error - ensure no error occur in database
-                isDefinedType(typeOf) {
-                    if (typeOf === 'warrior') {
-                        return;
-                    } else if (typeOf === 'archer') {
-                        return;
-                    } else if (typeOf === 'knight') {
-                        return;
-                    } else
-                        throw new Error('This is not a correct player type!!');
-
+                len: {
+                    args: [2, 13],
+                    msg: "The name must contain between 2 and 13 characters."
+                },
+                isAlphanumeric: {
+                    args: true,
+                    msg: "Must not contain special characters!"
                 }
             }
         },

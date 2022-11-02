@@ -10,20 +10,26 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    try {
-        // would like to figure out a way to store all character names in full upper case mode
-        console.log(req.body.name)
-        // this will assign the player data to playerData
-        const playerData = await Players.create(req.body);
-        // when done correctly, it will post a status of 200 and show us the playerData in json format
-        res.status(200).json(playerData);
-    } catch (err) {
+
+    console.log(req.body, 'req body log')
+
+    Players.create(req.body)
+
+    .then(response => {
+        req.session.save(() => {
+            // store session data anytime a player is created
+            req.session.user_id = response.id;
+            req.session.logged_in = true;
+
+            console.log(req.session.logged, req.session.user_id)
+
+            res.status(200).json(response);
+        })
+    }).catch( err => {
         console.log(err)
-        // 400 status code means the server could not understand the request
         res.status(400).json(err);
-    }
+    })
+
 });
-
-
 
 module.exports = router;
