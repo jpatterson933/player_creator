@@ -6,3 +6,10 @@
     <input type="text" id="char-name">
     <input type="submit" value="Choose">
 </form>
+
+<h1>Heroes</h1>
+{{#each player as |players|}}
+<div>
+    <p>{{name}}</p>
+</div>
+{{/each}}

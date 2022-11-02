@@ -25,12 +25,32 @@ Players.init(
                 },
                 isAlphanumeric: {
                     args: true,
-                    msg: "Must not contain special characters!"
+                    msg: "The name must not contain special characters!"
                 }
             }
         },
     },
     {
+        hooks: {
+            beforeValidate: function () {
+                console.log('before validate')
+
+            },
+            afterValidate: function () {
+                console.log('after validate')
+
+            },
+            beforeCreate: function () {
+                
+                console.log('before create')
+
+            },
+            afterCreate: function () {
+                console.log('after create')
+
+            }
+        },
+
         sequelize,
         timestamps: false,
         freezeTableName: true,

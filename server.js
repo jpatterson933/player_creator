@@ -57,8 +57,8 @@ app.use(express.static(path.join(__dirname, 'public' )));
 // add routes here 
 app.use(routes);
 
-
-sequelize.sync({ force: false }).then(() => {
+// when set to true this will erase database everytime the server is spun up
+sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log('server now live..'))
 })
 

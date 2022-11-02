@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    console.log(req.body, 'req body log')
+    // console.log(req.body, 'req body log')
 
     Players.create(req.body)
 
@@ -21,13 +21,15 @@ router.post('/', async (req, res) => {
             req.session.user_id = response.id;
             req.session.logged_in = true;
 
-            console.log(req.session.logged, req.session.user_id)
+            // console.log((req.session.logged), req.session.user_id, 'session info', req.session)
 
             res.status(200).json(response);
         })
-    }).catch( err => {
-        console.log(err)
-        res.status(400).json(err);
+    }).catch( error => {
+        // this is our error message we will want to display to the user
+        // console.log(error.errors[0].message)
+        res.status(400).json(error);
+        
     })
 
 });
